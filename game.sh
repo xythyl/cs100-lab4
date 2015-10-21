@@ -1,6 +1,9 @@
 #!/bin/sh
 options=("Start!" "Get me the heck outta here!")
 move="Select an option to continue."
+h1visit=0
+h2visit=0
+time=0
 level1=("Take Hallway 1" "Take Hallway 2")
 doors=("Go through the 1st door" "Go through the 2nd door")
 
@@ -15,6 +18,9 @@ warp() {
         case $user_in in
             "Continue")
                 echo "Good luck!"
+                echo "time "$time
+                echo "h1 "$h1visit
+                echo "h2 "$h2visit
                 echo
                 exit
                 ;;
@@ -25,6 +31,7 @@ warp() {
 #Level 1b
 level1b() {
     echo "You're in Hall 2"
+    h2visit=1
     echo "Now there are two doors in front of you."
     echo "Which door would you like to try?"
     echo
@@ -53,6 +60,10 @@ level1b() {
 #Level 1a
 level1a() {
     echo "You're in Hall 1"
+    h1visit=1
+    if [ "$h1visit" -eq 1 -a "$h2visit" -eq 1 ]; then
+        time=1
+    fi
     echo "Now there are two doors in front of you."
     echo "Which door would you like to try?"
     echo
@@ -92,7 +103,7 @@ level1start() {
             "Take Hallway 2")
                 echo "You went down Hallway 2!"
                 echo
-                exit
+                level1b
                 ;;
             *) echo "Not a valid option!";;
         esac
