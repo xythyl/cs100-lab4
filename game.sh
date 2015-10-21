@@ -112,7 +112,9 @@ level1start() {
 
 #Start game
 clear
-echo "Welcome to the game!"
+echo "The Kraken has take the princess!"
+echo "..."
+echo "Will you help find her?"
 echo "$move"
 select user_in in "${options[@]}";
 do
@@ -120,6 +122,7 @@ do
         "Start!")
             echo "You selected $user_in"
             echo
+            echo "Great, let's go find her!"
             level1start
             ;;
         "Get me the heck outta here!")
